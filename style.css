@@ -108,16 +108,26 @@ z-index: 0;
 
 #listening-time {
     font-size: 1em;
-    text-align: left;
-    flex: 0 0;
-    width: 50px
+    text-align: left; /* Ensure text aligns to the left */
+    flex: 0 0 auto;
+    width: 50px; /* Set a fixed width to prevent layout shifts */
+    overflow: hidden; /* Ensure text does not overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-family: 'Courier New', Courier, monospace; /* Use monospace font */
+    direction: ltr; /* Ensure left-to-right alignment */
 }
 
 #song-length {
     font-size: 1em;
-    text-align: right;
-    flex: 0 0;
-    width: 50px
+    text-align: left; /* Change alignment to the left */
+    flex: 0 0 auto;
+    width: 50px; /* Set a fixed width to prevent layout shifts */
+    overflow: hidden; /* Ensure text does not overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-family: 'Courier New', Courier, monospace; /* Use monospace font */
+    direction: ltr; /* Ensure left-to-right alignment */
 }
 
 #duration-bar {
@@ -128,13 +138,14 @@ z-index: 0;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
+/* Added CSS variable for progress */
     --progress-width: 0%;
 }
 
 #duration-bar::after {
     content: "";
     display: block;
-    width: var(--progress-width);
+    width: var(--progress-width); /* Use CSS variable for dynamic width */
     height: 100%;
     background-color: #ffffff;
     position: absolute;
