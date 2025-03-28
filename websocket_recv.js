@@ -20,6 +20,7 @@ window.onload = function() {
         const isPlayingNow = !message.playing;
         const currentPosition = parseInt(message.position, 10);
         const totalDuration = parseInt(message.duration, 10);
+        songTitleElement.setAttribute("href", "https://open.spotify.com/track/" + uri.split(":")[2]);
         if (uri !== playing_uri) {
             startTime = Date.now() - currentPosition;
             songTitleElement.textContent = message["metadata"]["title"];
