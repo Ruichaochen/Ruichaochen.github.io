@@ -17,7 +17,7 @@ window.onload = function() {
     socket.onmessage = (event) => {
         const message = JSON.parse(event.data);
         const uri = message["track_uri"]
-        const isPlayingNow = !message.playing;
+        const isPlayingNow = message.playing;
         const currentPosition = parseInt(message.position, 10);
         const totalDuration = parseInt(message.duration, 10);
         songTitleElement.setAttribute("href", "https://open.spotify.com/track/" + uri.split(":")[2]);
