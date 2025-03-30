@@ -4,8 +4,9 @@ let elapsedTime = 0;
 let totalDuration = 0;
 let timerInterval;
 let playing_uri;
-window.onload = function() {
-    const socket = new WebSocket("ws://141.147.114.232:8765");
+
+function websocket_listen() {
+    const socket = new WebSocket("wss://ws.ruichao.software");
 
     const listeningTimeElement = document.getElementById("listening-time");
     const songDurationElement = document.getElementById("song-duration");
@@ -22,10 +23,21 @@ window.onload = function() {
         const totalDuration = parseInt(message.duration, 10);
         songTitleElement.setAttribute("href", "https://open.spotify.com/track/" + uri.split(":")[2]);
         if (uri !== playing_uri) {
-            startTime = Date.now() - currentPosition;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                if (isPlaying) {
+                    timerInterval = setInterval(() => displayElapsedTime(Date.now() - startTime, totalDuration), 1000, );
+                }
+            }
+            if ("startTime" in message) {
+                startTime = message["startTime"];
+            } else {
+                startTime = Date.now() - currentPosition;
+            }
             songTitleElement.textContent = message["metadata"]["title"];
+            songArtistsElement.textContent = message["metadata"]["artists"];
             albumCoverElement.src = "https://i.scdn.co/image/" + message["metadata"]["image_url"].split(":")[2];
-            displayElapsedTime(Date.now() - startTime, totalDuration);
+            displayElapsedTime(message["position"], totalDuration);
         }    
         if (isPlayingNow) {
             if (!isPlaying) {
@@ -63,8 +75,11 @@ window.onload = function() {
 
 
     socket.addEventListener("close", () => {
-        console.warn("WebSocket closed.");
-        clearInterval(timer);
-        location.reload();
+        clearInterval(timerInterval);
+        setTimeout(websocket_listen, 5000)
     })
+}
+
+window.onload = function() {
+    websocket_listen();
 }
