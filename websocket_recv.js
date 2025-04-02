@@ -59,6 +59,9 @@ function websocket_listen() {
     };
 
     function displayElapsedTime(time, totalDuration) {
+        if (time > totalDuration) {
+            time = totalDuration
+        }
         console.log(`Elapsed Time: ${time}, Total Duration: ${totalDuration}`);
         elapsedSeconds = Math.floor(time / 1000);
         minutes = Math.floor(elapsedSeconds / 60);
