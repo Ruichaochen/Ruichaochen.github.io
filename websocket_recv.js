@@ -34,6 +34,7 @@ function websocket_listen() {
             } else {
                 startTime = Date.now() - currentPosition;
             }
+            playing_uri = uri
             songTitleElement.textContent = message["metadata"]["title"];
             songArtistsElement.textContent = message["metadata"]["artists"];
             albumCoverElement.src = "https://i.scdn.co/image/" + message["metadata"]["image_url"].split(":")[2];
