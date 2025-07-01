@@ -40,7 +40,7 @@ function websocket_listen() {
             albumCoverElement.src = "https://i.scdn.co/image/" + message["metadata"]["image_url"].split(":")[2];
             displayElapsedTime(message["position"], totalDuration);
         }    
-        displayElapsedTime(Date.now() - startTime, totalDuration);
+        displayElapsedTime(currentPosition, totalDuration);
         if (isPlayingNow) {
             if (!isPlaying) {
                 startTime = Date.now() - currentPosition;
