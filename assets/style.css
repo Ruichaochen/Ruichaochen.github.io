@@ -87,8 +87,7 @@ z-index: 0;
 }
 
 #song-artist {
-    font-size: 1.3em;
-    font-weight: bold;
+    color: inherit;
     text-align: left;
     text-decoration: none;
 }
