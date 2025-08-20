@@ -42,7 +42,7 @@ function websocket_listen() {
                 const artistLink = document.createElement("a");
                 artistLink.target = "_blank";
                 artistLink.setAttribute("href", "https://open.spotify.com/artist/" + artist[1].split(":")[2]);
-                artistLink.id = "song-artists";
+                artistLink.id = "song-artist";
                 artistLink.textContent = artist[0] + ", ";
                 songArtistsHolderElement.appendChild(artistLink);
             });
@@ -96,4 +96,5 @@ function websocket_listen() {
 window.onload = function() {
     websocket_listen();
 }
+
 
