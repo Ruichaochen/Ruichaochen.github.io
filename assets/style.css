@@ -83,6 +83,14 @@ z-index: 0;
     font-size: 1em;
     text-align: left;
     color: #cccccc;
+    text-decoration: none;
+}
+
+#song-artist {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
 }
 
 #album-cover {
