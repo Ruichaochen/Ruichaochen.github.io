@@ -12,9 +12,10 @@ function websocket_listen() {
     const songDurationElement = document.getElementById("song-duration");
     const plackbackBarElement = document.getElementById("duration-bar");
     const songTitleElement = document.getElementById("song-title");
-    const songArtistsElement = document.getElementById("song-artists");
+    const songArtistsHolderElement = document.getElementById("song-artists");
     const albumCoverElement = document.getElementById("album-cover");
-    
+    const albumLinkElement = document.getElementById("album-link");
+
     socket.onmessage = (event) => {
         const message = JSON.parse(event.data);
         const uri = message["track_uri"]
@@ -36,17 +37,27 @@ function websocket_listen() {
             }
             playing_uri = uri
             songTitleElement.textContent = message["metadata"]["title"];
-            songArtistsElement.textContent = message["metadata"]["artists"];
+            songArtistsHolderElement.innerHTML = "";
+            message["metadata"]["artists"].forEach(artist => {
+                const artistLink = document.createElement("a");
+                artistLink.target = "_blank";
+                artistLink.setAttribute("href", "https://open.spotify.com/artist/" + artist[1].split(":")[2]);
+                artistLink.id = "song-artists";
+                artistLink.textContent = artist[0] + ", ";
+                songArtistsHolderElement.appendChild(artistLink);
+            });
+            songArtistsHolderElement.lastChild.textContent = songArtistsHolderElement.lastChild.textContent.slice(0, -2);
             albumCoverElement.src = "https://i.scdn.co/image/" + message["metadata"]["image_url"].split(":")[2];
+            albumLinkElement.setAttribute("href", "https://open.spotify.com/album/" + message["metadata"]["album_uri"].split(":")[2]);
             displayElapsedTime(message["position"], totalDuration);
-        }    
+        }
         
         if (isPlayingNow) {
             if (!isPlaying) {
                 startTime = Date.now() - currentPosition;
                 timerInterval = setInterval(() => displayElapsedTime(Date.now() - startTime, totalDuration), 1000, );
-                isPlaying = true;
-            }
+                    isPlaying = true;
+                }
         } else {
             if (isPlaying) {
                 clearInterval(timerInterval);
