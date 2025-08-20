@@ -56,8 +56,8 @@ function websocket_listen() {
             if (!isPlaying) {
                 startTime = Date.now() - currentPosition;
                 timerInterval = setInterval(() => displayElapsedTime(Date.now() - startTime, totalDuration), 1000, );
-                    isPlaying = true;
-                }
+                isPlaying = true;
+            }
         } else {
             if (isPlaying) {
                 clearInterval(timerInterval);
@@ -96,3 +96,4 @@ function websocket_listen() {
 window.onload = function() {
     websocket_listen();
 }
+
