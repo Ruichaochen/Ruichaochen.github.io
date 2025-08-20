@@ -40,13 +40,16 @@ function websocket_listen() {
             songArtistsHolderElement.innerHTML = "";
             message["metadata"]["artists"].forEach(artist => {
                 const artistLink = document.createElement("a");
+                const separator = document.createElement("span");
+                separator.textContent = ", ";
                 artistLink.target = "_blank";
                 artistLink.setAttribute("href", "https://open.spotify.com/artist/" + artist[1].split(":")[2]);
                 artistLink.id = "song-artist";
-                artistLink.textContent = artist[0] + ", ";
+                artistLink.textContent = artist[0];
                 songArtistsHolderElement.appendChild(artistLink);
+                songArtistsHolderElement.appendChild(separator);
             });
-            songArtistsHolderElement.lastChild.textContent = songArtistsHolderElement.lastChild.textContent.slice(0, -2);
+            songArtistsHolderElement.lastChild.remove();
             albumCoverElement.src = "https://i.scdn.co/image/" + message["metadata"]["image_url"].split(":")[2];
             albumLinkElement.setAttribute("href", "https://open.spotify.com/album/" + message["metadata"]["album_uri"].split(":")[2]);
             displayElapsedTime(message["position"], totalDuration);
@@ -55,7 +58,7 @@ function websocket_listen() {
         if (isPlayingNow) {
             if (!isPlaying) {
                 startTime = Date.now() - currentPosition;
-                timerInterval = setInterval(() => displayElapsedTime(Date.now() - startTime, totalDuration), 1000, );
+                timerInterval = setInterval(() => displayElapsedTime(Date.now() - startTime, totalDuration), 1000);
                 isPlaying = true;
             }
         } else {
@@ -96,5 +99,3 @@ function websocket_listen() {
 window.onload = function() {
     websocket_listen();
 }
-
-
