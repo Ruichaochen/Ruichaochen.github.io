@@ -72,6 +72,7 @@ z-index: 0;
 }
 
 #song-title {
+    max-width: calc(100% - 75px);
     font-size: 1.3em;
     font-weight: bold;
     text-align: left;
@@ -150,3 +151,4 @@ z-index: 0;
     top: 0;
     left: 0;
 }
+
