@@ -24,7 +24,7 @@ html, body {
     margin-bottom: 10px;
 }
 
-#about-me {
+.about-me {
     font-family: "Space Mono";
     font-size: 1em;
     color: #ffffff;
@@ -33,6 +33,43 @@ html, body {
     z-index: 1;
     margin-bottom: 20px;
     max-width: 90%;
+}
+
+.todo {
+    font-family: "Space Mono";
+    font-size: 1em;
+    color: #ffffff;
+    text-align: left;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+summary {
+    font-family: "Space Mono";
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+details {
+    font-family: "Space Mono";
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+ul {
+    text-align: left;
+    z-index: 1;
 }
 
 #particles-js {

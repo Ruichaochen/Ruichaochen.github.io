@@ -6,7 +6,7 @@ let timerInterval;
 let playing_uri;
 
 function websocket_listen() {
-    const socket = new WebSocket("wss://ws.ruichao.software");
+    const socket = new WebSocket("wss://ws.160416.xyz");
 
     const listeningTimeElement = document.getElementById("listening-time");
     const songDurationElement = document.getElementById("song-duration");
